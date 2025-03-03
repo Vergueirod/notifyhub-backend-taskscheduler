@@ -3,12 +3,9 @@ package com.vergueiro_group.notifuhub_backend_taskScheduler.infrastructure.secur
 
 import com.vergueiro_group.notifuhub_backend_taskScheduler.business.dto.UserDTO;
 import com.vergueiro_group.notifuhub_backend_taskScheduler.infrastructure.client.UserClient;
-import com.vergueiro_group.notifyhub_backend_user.infrastructure.entity.User;
-import com.vergueiro_group.notifyhub_backend_user.infrastructure.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
