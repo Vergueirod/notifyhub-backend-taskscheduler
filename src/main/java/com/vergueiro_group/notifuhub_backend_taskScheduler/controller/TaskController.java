@@ -2,6 +2,7 @@ package com.vergueiro_group.notifuhub_backend_taskScheduler.controller;
 
 import com.vergueiro_group.notifuhub_backend_taskScheduler.business.TaskService;
 import com.vergueiro_group.notifuhub_backend_taskScheduler.business.dto.TaskDTO;
+import com.vergueiro_group.notifuhub_backend_taskScheduler.infrastructure.enums.StatusNotificationEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +39,27 @@ public class TaskController {
     public ResponseEntity<List<TaskDTO>> findByEmailUser(
             @RequestHeader("Authorization") String token){
             return ResponseEntity.ok(taskService.findByUserEmail(token));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteTaskById(
+            @RequestParam("id") String id) {
+        taskService.deleteTaskById(id);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping
+    public ResponseEntity<TaskDTO> updateStatusNotification(
+            @RequestParam("status") StatusNotificationEnum status,
+            @RequestParam("id") String id) {
+        return ResponseEntity.ok(taskService.updateStatus(status, id));
+    }
+
+    @PutMapping
+    public ResponseEntity<TaskDTO> updateTask(
+            @RequestBody TaskDTO dto,
+            @RequestParam("id") String id) {
+        return ResponseEntity.ok(taskService.updateTask(dto, id));
     }
 }
